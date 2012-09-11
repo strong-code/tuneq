@@ -1,0 +1,8 @@
+#Compiled Python files
+*.pyc
+
+#Test files
+test.*
+
+#Config files
+config.*
