@@ -1,0 +1,20 @@
+{% macro vid(url) %}
+<!doctype html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TuneQ - A Social Music Queue!</title>
+</head>
+
+<body>
+
+	<h1>Current Track: </h1>
+
+	<iframe id="ytplayer" type="text/html" width="640" height="390"
+  src={{ url }}
+  frameborder="0"/>
+  
+</body>
+</html>
+{% endmacro %}
