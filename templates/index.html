@@ -12,9 +12,9 @@
 	<h1>Current Track: </h1>
 
 	<iframe id="ytplayer" type="text/html" width="640" height="390"
-  src={{ url }}
+  src={{ url|safe }}
   frameborder="0"/>
-  
+
 </body>
 </html>
 {% endmacro %}
