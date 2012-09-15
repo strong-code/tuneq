@@ -20,4 +20,4 @@ TuneQ is a web application that utilizes the Twilio and Youtube API to create a 
 * Now you can text your Twilio number to add tracks to the queue!
 	* Use the syntax 'Add [Song Keyword]'. This uses fuzzy string matching, so you can enter a keyword ('Add Rolling Stone'), the track name ('Add Like A Rolling Stone'), or track name and artist name('Add Like A Rolling Stone Bob Dylan'). The more info, the more likely you are to get the correct track.
 
-###Click [here to see a live demo!](http://tuneq.herokuapp.com)
+###[Click here to see a live demo!](http://tuneq.herokuapp.com)
