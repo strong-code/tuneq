@@ -10,11 +10,11 @@ TuneQ is a web application that utilizes the Twilio and Youtube API to create a 
 	* A Twilio account and number
 * Clone this repo
 * Edit config.py as such:
-	'''python
+	```python
 	SERVER_NUMBER = 'your Twilio phone number'
 	SID = 'your Twilio SID'
 	TOKEN = 'your Twilio auth token'
-	'''
+	```
 * Deploy to heroku (or your own server)
 * Point your SMS Request URL for your Twilio phone number to the URL of your hosted app
 * Now you can text your Twilio number to add tracks to the queue!
