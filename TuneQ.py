@@ -21,7 +21,7 @@ def displayPage():
 			return 'No videos in queue! Text ' + SERVER_NUMBER + ' with \"add [TRACK TITLE]\" to add a song!'
 		else:
 			video = get_template_attribute('index.html', 'vid')
-			url = URLqueue.pop(0)
+			url = sms.URLqueue.pop(0)
 			return video(url)
 
 if __name__ == "__main__":
