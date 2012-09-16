@@ -4,7 +4,9 @@ Handle the sms portions of the ap
 from twilio.rest import TwilioRestClient
 import twilio.twiml
 from bs4 import BeautifulSoup
-import urllib2, TuneQ #<<< CHANGE WHEN YOU PUSH TO GIT TO TuneQ.py
+import urllib2, re
+
+URLqueue = []
 
 def replyToSMS(from_number, from_contents, queueLength):
 
@@ -14,7 +16,7 @@ def replyToSMS(from_number, from_contents, queueLength):
 	resp = twilio.twiml.Response()
 
 	if trackInfo[0] == True:
-		test.URLqueue.append(trackInfo[2])
+		URLqueue.append(trackInfo[2])
 		print '>>> added ' + str(trackInfo[2]) + ' to queue'
 		resp.sms(str(trackInfo[1] + ' has been added to the queue! You are ' + str(queueLength + 1) + ' in the queue'))
 	else:
@@ -37,7 +39,9 @@ def findTrack(from_contents):
 	try:
 		XMLresponse = urllib2.urlopen(queryURL)
 		soup = BeautifulSoup(XMLresponse.read())
-		link = soup.entry.link['href']
+		ytcode = soup.entry.link['href'].split('v=')
+		trailing = re.sub('&.*$', '?autoplay=1', ytcode[1])
+		link = 'http://www.youtube.com/embed/%s' % trailing
 		title = soup.entry.title.string
 		return (True, title, link)
 	except:

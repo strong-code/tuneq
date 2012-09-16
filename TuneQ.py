@@ -7,7 +7,6 @@ app = Flask(__name__)
 SERVER_NUMBER = config.SERVER_NUMBER
 SID = config.SID
 TOKEN = config.TOKEN
-URLqueue = ['\"https://www.youtube.com/watch?v=CYIGLJgN4e8\"']
 
 @app.route("/", methods=['GET', 'POST'])
 def displayPage():
@@ -16,14 +15,13 @@ def displayPage():
 	from_contents = request.values.get('Body', None)
 
 	if from_contents is not None:
-		return sms.replyToSMS(from_number, from_contents.lower(), len(URLqueue))
+		return sms.replyToSMS(from_number, from_contents.lower(), len(sms.URLqueue))
 	else:
-		if len(URLqueue) == 0:
-			return 'No videos in queue! Text ' + SERVER_NUMBER[4:] + ' with \"add [TRACK TITLE]\" to add a song!'
+		if len(sms.URLqueue) == 0:
+			return 'No videos in queue! Text ' + SERVER_NUMBER + ' with \"add [TRACK TITLE]\" to add a song!'
 		else:
 			video = get_template_attribute('index.html', 'vid')
-			# url = URLqueue.pop(0)
-			url = (URLqueue[0])
+			url = URLqueue.pop(0)
 			return video(url)
 
 if __name__ == "__main__":
