@@ -1,20 +1,49 @@
 {% macro vid(url) %}
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>TuneQ - A Social Music Queue!</title>
-</head>
+  <body>
+  	<h1>Current track:</h1>
+    <div id="player"></div>
 
-<body>
+    <script>
 
-	<h1>Current Track: </h1>
+    var tag = document.createElement('script');
+    tag.src = "//www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-<iframe id="ytplayer" type="text/html" width="640" height="360"
-src={{ url }}
-frameborder="0" allowfullscreen>
+	var player;
+	function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+	  height: '390',
+	  width: '640',
+	  videoId: '{{ url|safe }}',
+	  playervars: { 'autoplay': 1, 'controls': 0},
+	  events: {
+	    'onReady': onPlayerReady,
+	    'onStateChange': onPlayerStateChange
+	  }
+	});
+	}
 
-</body>
+	function onPlayerReady(event) {
+	event.target.playVideo();
+	}
+
+	var done = false;
+	function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING && !done) {
+	  setTimeout(stopVideo, 6000);
+	  done = true;
+	}
+		if (event.data == YT.PlayerState.ENDED) {
+			window.location.reload();
+		}
+	}
+	function stopVideo() {
+	player.stopVideo();
+	}
+    </script>
+  </body>
 </html>
 {% endmacro %}

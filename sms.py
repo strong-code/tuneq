@@ -17,7 +17,6 @@ def replyToSMS(from_number, from_contents, queueLength):
 
 	if trackInfo[0] == True:
 		URLqueue.append(trackInfo[2])
-		print '>>> added ' + str(trackInfo[2]) + ' to queue'
 		resp.sms(str(trackInfo[1] + ' has been added to the queue! You are ' + str(queueLength + 1) + ' in the queue'))
 	else:
 		resp.sms('Couldn\'t find that track. Did you spell it correctly?')
@@ -40,9 +39,8 @@ def findTrack(from_contents):
 		XMLresponse = urllib2.urlopen(queryURL)
 		soup = BeautifulSoup(XMLresponse.read())
 		ytcode = soup.entry.link['href'].split('v=')
-		trailing = re.sub('&.*$', '?autoplay=1', ytcode[1])
-		link = 'http://www.youtube.com/embed/%s' % trailing
+		trailing = re.sub('&.*$', '', ytcode[1])
 		title = soup.entry.title.string
-		return (True, title, link)
+		return (True, title, trailing)
 	except:
 		return (False, None, None)
