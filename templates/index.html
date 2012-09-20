@@ -1,9 +1,22 @@
-{% macro vid(url) %}
+{% macro vid(url, currQueue) %}
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta charset="utf-8">
+		<title>TuneQ - Bringing democracy to your playlists</title>
+	</head>
   <body>
   	<h1>Current track:</h1>
     <div id="player"></div>
+    	<p><div id="queue"><h2>Next up:</h2>
+    		<ol class="tracks">
+    			{% for track in currQueue %}
+    			<li>{{ track }}</li>
+    			{% else %}
+    			Queue is empty! Send a text to add a track!
+    			{% endfor %}
+    		</ol>
+    	</div></p>
 
     <script>
 
@@ -30,12 +43,7 @@
 	event.target.playVideo();
 	}
 
-	var done = false;
 	function onPlayerStateChange(event) {
-	if (event.data == YT.PlayerState.PLAYING && !done) {
-	  setTimeout(stopVideo, 6000);
-	  done = true;
-	}
 		if (event.data == YT.PlayerState.ENDED) {
 			window.location.reload();
 		}

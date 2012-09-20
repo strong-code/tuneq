@@ -15,9 +15,9 @@ def getText():
 	from_contents = request.values.get('Body', None)
 
 	if from_contents is not None:
-		return sms.replyToSMS(from_number, from_contents.lower(), len(sms.URLqueue))
+		return sms.replyToSMS(from_number, from_contents.lower(), len(sms.Queue))
 	else:
-		if len(sms.URLqueue) == 0:
+		if len(sms.Queue) == 0:
 			#This should return a nicely formatted template, but this works for now
 			return 'No videos in queue! Text ' + SERVER_NUMBER + ' with \"add [TRACK TITLE]\" to add a song!'
 		else:
@@ -25,9 +25,10 @@ def getText():
 
 def displayPage():
 	video = get_template_attribute('index.html', 'vid')
-	url = sms.URLqueue.pop(0)
-	return video(url)
+	Titles = sms.Titles[1:]
+	sms.Titles.pop(0)
+	return video(sms.Queue.pop(0), Titles)
 
 if __name__ == "__main__":
 	port = int(os.environ.get('PORT', 5000))
-	app.run(host='0.0.0.0', port=port, debug=True)
+	app.run(host='0.0.0.0', port=port)

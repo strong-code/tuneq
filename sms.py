@@ -6,7 +6,8 @@ import twilio.twiml
 from bs4 import BeautifulSoup
 import urllib2, re
 
-URLqueue = []
+Queue = []
+Titles = []
 
 def replyToSMS(from_number, from_contents, queueLength):
 
@@ -16,8 +17,12 @@ def replyToSMS(from_number, from_contents, queueLength):
 	resp = twilio.twiml.Response()
 
 	if trackInfo[0] == True:
-		URLqueue.append(trackInfo[2])
-		resp.sms(str(trackInfo[1] + ' has been added to the queue! You are ' + str(queueLength + 1) + ' in the queue'))
+		Queue.append(trackInfo[2])
+		Titles.append(trackInfo[1])
+		if len(Queue) == 1:
+			resp.sms(str('Your music queue has been started with ' + trackInfo[1] + '! Refresh the page to begin listening.'))
+		else:
+			resp.sms(str(trackInfo[1] + ' has been added to the queue! You are #' + str(queueLength + 1) + ' in the queue'))
 	else:
 		resp.sms('Couldn\'t find that track. Did you spell it correctly?')
 
