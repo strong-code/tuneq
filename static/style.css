@@ -1,0 +1,8 @@
+body{
+	background: url("/static/img/bg.png");
+}
+
+.header {
+	float: left;
+	border: 2px dashed;
+}

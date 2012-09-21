@@ -4,10 +4,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title>TuneQ - Bringing democracy to your playlists</title>
+		<link href="/static/style.css" rel="stylesheet" type="text/css" />
 	</head>
-  <body>
+  <body><center>
+  	<div id="header"><img src="/static/img/logo.png">
+  	</div>
   	<h1>Current track:</h1>
-    <div id="player"></div>
+    <div id="player"></div></center>
     	<p><div id="queue"><h2>Next up:</h2>
     		<ol class="tracks">
     			{% for track in currQueue %}
