@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% macro vid(url, currQueue) %}
 <!DOCTYPE html>
 <html>
@@ -57,4 +58,65 @@
     </script>
   </body>
 </html>
+=======
+{% macro vid(url, currQueue) %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TuneQ - Bringing democracy to your playlists</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+	</head>
+  <body><center>
+  	<div id="header"><img src="../img/logo.png">
+  	</div>
+  	<h1>Current track:</h1>
+    <div id="player"></div></center>
+    	<p><div id="queue"><h2>Next up:</h2>
+    		<ol class="tracks">
+    			{% for track in currQueue %}
+    			<li>{{ track }}</li>
+    			{% else %}
+    			Queue is empty! Send a text to add a track!
+    			{% endfor %}
+    		</ol>
+    	</div></p>
+
+    <script>
+
+    var tag = document.createElement('script');
+    tag.src = "//www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+	  height: '390',
+	  width: '640',
+	  videoId: '{{ url|safe }}',
+	  playervars: { 'autoplay': 1, 'controls': 0},
+	  events: {
+	    'onReady': onPlayerReady,
+	    'onStateChange': onPlayerStateChange
+	  }
+	});
+	}
+
+	function onPlayerReady(event) {
+	event.target.playVideo();
+	}
+
+	function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.ENDED) {
+			window.location.reload();
+		}
+	}
+	function stopVideo() {
+	player.stopVideo();
+	}
+    </script>
+  </body>
+</html>
+>>>>>>> d7dbcf9b743d91c17b68b76e38d58eb82d817a10
 {% endmacro %}
