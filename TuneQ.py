@@ -18,8 +18,8 @@ def getText():
 		return sms.replyToSMS(from_number, from_contents.lower(), len(sms.Queue))
 	else:
 		if len(sms.Queue) == 0:
-			#This should return a nicely formatted template, but this works for now
-			return 'No videos in queue! Text ' + SERVER_NUMBER + ' with \"add [TRACK TITLE]\" to add a song!'
+			first = get_template_attribute('first.html', 'firstLoad')
+			return first(SERVER_NUMBER)
 		else:
 			return displayPage()
 
