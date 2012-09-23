@@ -1,8 +1,13 @@
 body{
+	font-family: 'PT Sans', sans-serif;
 	background: url("/static/img/bg.png");
 }
 
 .header {
 	float: left;
 	border: 2px dashed;
+}
+
+.git {
+	float: left;
 }
