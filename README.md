@@ -4,6 +4,12 @@
 ##What is it?
 TuneQ is a web application that utilizes the Twilio and Youtube API to create a playlist of tracks. Users can add to the playlist queue by texting the appropriate Twilio number.
 
+##Demo
+
+**Note** There is a good chance the demo doesn't work since I was using a Twilio test account
+
+[Click here to see a demo](http://tuneq.herokuapp.com)
+
 ##How do I use it?
 ###You will need:
 	* A Heroku account
