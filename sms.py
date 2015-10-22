@@ -1,5 +1,5 @@
 '''
-Handle the sms portions of the ap
+Handle the sms portions of the app
 '''
 from twilio.rest import TwilioRestClient
 import twilio.twiml

@@ -1,12 +1,12 @@
 from flask import Flask, request, redirect, session, get_template_attribute, render_template
 import os
-import sms, config
+import sms
 
 app = Flask(__name__)
 
-SERVER_NUMBER = config.SERVER_NUMBER
-SID = config.SID
-TOKEN = config.TOKEN
+SERVER_NUMBER = os.environ['SERVER_NUMBER']
+SID = os.environ['SID']
+TOKEN = os.environ['TOKEN']
 
 @app.route("/", methods=['GET', 'POST'])
 def getText():
